@@ -59,6 +59,9 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'x_rapid_host' => env('x_RAPID_HOST'),
+    'x_rapid_key' => env('x_RAPID_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

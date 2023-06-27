@@ -6,4 +6,5 @@ return [
     'news_created' => 'postagem criada em',
     'author' => 'Autor',
     'about' => 'Sobre',
+    'filmes' => 'Filmes',
 ];

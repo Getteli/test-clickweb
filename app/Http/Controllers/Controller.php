@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Api\Filmes;
 use App\Models\News;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -39,5 +40,33 @@ class Controller extends BaseController
         }
 
         return view('post', compact('news'));
+    }
+
+    /**
+     * Controller para a home dos filmes, que exibirá a lista
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     **/
+    public function homeFilmes()
+    {
+        $filmes = (new Filmes())->listAllFilmes();
+        $bpage = intval($filmes->next) - 1;
+        $bpage = strval($bpage <= 0 ? 1 : $bpage);
+        $npage = ltrim($filmes->next, '/titles?page=');
+        return view('filmes.index',compact('filmes','bpage','npage'));
+    }
+
+    /**
+     * Controller para a paginacao dos filmes, que exibirá na lista
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     **/
+    public function pageFilmes($page, $is_back = null)
+    {
+        $filmes = (new Filmes())->anotherPage($page, $is_back);
+        $bpage = intval($filmes->next) - 1;
+        $bpage = $bpage <= 0 ? 1 : $bpage;
+        $npage = ltrim($filmes->next, '/titles?page=');
+        return view('filmes.index',compact('filmes','bpage','npage'));
     }
 }

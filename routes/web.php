@@ -18,3 +18,20 @@ Route::get('/',[Controller::class, 'home'])
 
 Route::get('/post/{slug}',[Controller::class, 'openPost'])
     ->name('open.post');
+ 
+	#region FILMES
+		Route::group(['as' => 'filmes.', 'prefix' => 'filmes'], function()
+		{
+            /**
+             * rota da pagina de filmes
+             */
+			Route::get('/',[Controller::class, 'homeFilmes'])
+				->name('home');
+            
+			/**
+			 * paginacao da api proxima ou anterior
+			 */
+			Route::get('/page/{page}',[Controller::class, 'pageFilmes'])
+				->name('another.page');
+		});
+	#endregion
