@@ -24,6 +24,7 @@
             @endforeach
 		</div>
 
+        {{-- paginacao --}}
 		<div class="position-relative mt-5">
 			<div class="d-flex justify-content-center">
                 <nav>
